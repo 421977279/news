@@ -6,11 +6,18 @@
 </template>
 
 <script>
-// @ is an alias to /src
+// @ 符号就是指向src的，也就是src的别名
 import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
+  data(){
+    return{}
+  },
+  methods:{},
+  computed:{},
+  watch:{},
+  mounted:{},
   components: {
     HelloWorld
   }
