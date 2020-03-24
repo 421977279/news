@@ -1,21 +1,17 @@
 import Vue from 'vue'
 // 导入路由
 import VueRouter from 'vue-router'
-// 导入组件，home是一个普通组件，home是首页
-import Home from '../views/Home.vue'
 
+// 注册路由的插件，把路由关联到vue。固定要加的
 Vue.use(VueRouter)
 
+// 路由配置
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    // 组件的懒加载，只有当我访问这个页面的时候，才会加载这个js文件
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path:"/login",
+    // 除了首页之外的页面可以用懒加载，@符号代表src这个目录
+    // .vue这个扩展名可以忽略
+    component:()=> import("@/views/Login")
   }
 ]
 
