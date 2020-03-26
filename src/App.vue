@@ -8,6 +8,8 @@
 <style lang="less">
 // css原生的写法
 @import url("//at.alicdn.com/t/font_1426139_jm7n2373nlh.css");
+// 导入vant iu组件库的样式
+@import url('../node_modules/vant/lib/index.css');
 
 // 公共的样式
 *{
