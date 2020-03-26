@@ -1,23 +1,76 @@
 <template>
-  <div class="login">
-      登录页
-      <!-- 要显示阿里图标库的图标，必须加上iconfont这个类，第二类名就是你想要显示的那个图标 -->
-      <!-- 测试 -->
+  <div class="container">
+    <!-- 返回上一页按钮 -->
+    <div class="back-btn">
+      <span class="iconfont iconicon-test"></span>
+    </div>
+    <!-- login -->
+    <div class="logo">
       <span class="iconfont iconnew"></span>
+    </div>
+    <!-- 表单 -->
+    <div class="form">
+      <div class="form-item">
+        <input placeholder="手机号码" />
+      </div>
+      <div class="form-item">
+        <input type="password" placeholder="请输入密码" />
+      </div>
+      <div class="form-item">
+        <button>登录</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style lang="less">
-.login{
-  .iconnew{
-    font-size: 126px;
-    color:red;
-  }
+.container {
+  padding: 20 /360 * 100vw;
+}
+
+.back-btn {
+  font-size: 27 /360 * 100vw;
+  line-height: 0;
+}
+
+.logo {
+  text-align: center;
+  margin-top: 20/360 * 100vw;
+}
+
+.logo span {
+  font-size: 126/360 * 100vw;
+  color: #cc3300;
+}
+
+.form-item{
+  margin-top: 20 /360 * 100vw;
+}
+
+.form-item input {
+  width: 100%;
+  height: 44 /360 * 100vw;
+  box-sizing: border-box;
+  line-height: 44 /360 * 100vw;
+  background: none;
+  border:none;
+  border-bottom: 1px #999 solid;
+  outline:none; //输入框点击时候没有高亮状态
+  font-size:16px; //文字大小尽量用像素
+}
+
+.form-item button{
+  width: 100%;
+  height: 48 /360 * 100vw;
+  background-color: #cc3300;
+  color:#fff;
+  border-radius: 50px;
+  border:none;
+  outline:none;
+  font-size: 16px;
 }
 </style>
