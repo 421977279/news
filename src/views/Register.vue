@@ -30,6 +30,14 @@
         placeholder="手机号码"
         :rules="[{ required: true, message: '请填写用户名' }]"
       />
+      <!-- 昵称的输入框 -->
+      <van-field
+        v-model="form.nickname"
+        type="text"
+        name="昵称"
+        placeholder="昵称"
+        :rules="[{ required: true, message: '请填写昵称' }]"
+      />
       <!-- 密码输入框，和上面的属性是一样的 -->
       <van-field
         v-model="form.password"
@@ -41,12 +49,12 @@
       <div>
         <!-- 如果这个按钮是van-form组件内部，
         并且按钮的native-type="submit",说明点击这个按钮就会触发submit事件-->
-        <van-button round block type="info" native-type="submit">登录</van-button>
+        <van-button round block type="info" native-type="submit">注册</van-button>
       </div>
     </van-form>
 
-    <router-link to="/register">
-      <van-button round block class="link-register">注册</van-button>
+    <router-link to="/login">
+      <van-button round block class="link-login">登录</van-button>
     </router-link>
   </div>
 </template>
@@ -58,6 +66,7 @@ export default {
       // 保存表单数据
       form: {
         username: "",
+        nickname: "",
         password: ""
       }
     };
@@ -87,7 +96,7 @@ export default {
     onSubmit(values) {
       this.$axios({
         // 接口地址
-        url: "/login",
+        url: "/register",
         // 声明请求的方式为post请求
         method: "POST",
         // 参数
@@ -95,17 +104,10 @@ export default {
         // .then方法里面的函数就是成功的回调函数
       }).then(res => {
         console.log(res);
-        // 获取到返回的信息,data是token和用户信息，data是保存到本地的
-        const { message, data } = res.data;
+        // 获取到返回的信息
+        const { message } = res.data;
         // 使用vant的弹窗提示
         this.$toast.success(message);
-
-        // 把token和id保存到本地
-        // localStorage只能保存字符串，需要使用JSON.stringtify来把对象转换成字符串
-        localStorage.setItem("userInfo", JSON.stringify(data));
-
-        //跳转到个人中心页
-        this.$router.push("./personal");
       });
 
       // console.log("submit", this.form);
@@ -115,7 +117,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-// scoped属性表示样式只有在当前页面可用
 .container {
   padding: 20 /360 * 100vw;
 }
@@ -181,7 +182,7 @@ export default {
   }
 }
 
-.link-register {
+.link-login {
   margin-top: 20 /360 * 100vw;
 }
 </style>
