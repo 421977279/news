@@ -1,30 +1,28 @@
 <template>
   <div class="container">
-    <!-- 头部 -->
-    <div class="navigate-bar">
-      <span class="iconfont iconjiantou2" @click="$router.back()"></span>
-      <strong>个人中心</strong>
-      <span class="iconfont iconshouye" @click="$router.push('/')"></span>
-    </div>
-    <div class="header">
-      <!-- 头像 -->
-      <div class="avatar">
-        <!-- 头像图片是来自后台的，所以加上后台地址，地址可以直接读取axios的基准路径
-        好处就是以后需要修改基准路径-->
-        <img :src="$axios.defaults.baseURL + userInfo.head_img" alt />
-      </div>
-      <!-- 姓名/日期 -->
-      <div class="profile">
-        <div>
-          <span class="iconfont iconxingbienan" v-if="userInfo.gender===1"></span>
-          <span class="iconfont iconxingbienv" v-if="userInfo.gender===0"></span>
-          {{userInfo.nickname}}
+    <!-- 引入自定义组件 ,showHome显示-->
+    <NavigateBar title="个人中心" :showHome="true"/>
+    <router-link to="edit_profile">
+      <div class="header">
+        <!-- 头像 -->
+        <div class="avatar">
+          <!-- 头像图片是来自后台的，所以加上后台地址，地址可以直接读取axios的基准路径
+          好处就是以后需要修改基准路径-->
+          <img :src="$axios.defaults.baseURL + userInfo.head_img" alt />
         </div>
-        <p>{{moment(userInfo.create_date).format('YYYY-MM-DD') }}</p>
+        <!-- 姓名/日期 -->
+        <div class="profile">
+          <div>
+            <span class="iconfont iconxingbienan" v-if="userInfo.gender===1"></span>
+            <span class="iconfont iconxingbienv" v-if="userInfo.gender===0"></span>
+            {{userInfo.nickname}}
+          </div>
+          <p>{{moment(userInfo.create_date).format('YYYY-MM-DD') }}</p>
+        </div>
+        <!-- 右侧的箭头图标 -->
+        <span class="arrow iconfont iconjiantou1"></span>
       </div>
-      <!-- 右侧的箭头图标 -->
-      <span class="arrow iconfont iconjiantou1"></span>
-    </div>
+    </router-link>
 
     <!-- 组件的调用，单双标签都可以 -->
     <!-- :key不是报错，可以不加，但是vue希望给循环指定唯一的key，所以推荐我们在循环时候都加上 -->
@@ -40,6 +38,8 @@
 <script>
 // 导入列表按钮栏的组件,import后面接上的变量名（变量就意味着可以随便改名字）
 import Listbar from "@/components/Listbar";
+
+import NavigateBar from "@/components/NavigateBar";
 
 // 引入第三方的日期格式处理的工具库
 import moment from "moment";
@@ -70,7 +70,8 @@ export default {
   },
   // 注册组件，导入的子组件都必须注册才可以在模板中渲染
   components: {
-    Listbar
+    Listbar,
+    NavigateBar
   },
   mounted() {
     // 从本地获取token和id
@@ -95,16 +96,17 @@ export default {
   },
   methods: {
     handleClick() {
-      this.$dialog.confirm({
-        title: "温馨提示",
-        message: "你确定要退出吗？"
-      })
+      this.$dialog
+        .confirm({
+          title: "温馨提示",
+          message: "你确定要退出吗？"
+        })
         .then(() => {
-        //  点击确定时候触发的函数 
-        //  清除本地的用户数据
-        localStorage.removeItem("userInfo");
-        // 跳转到登录页，必须使用replace,因为退出不可能在返回个人中心
-        this.$router.replace("/login")
+          //  点击确定时候触发的函数
+          //  清除本地的用户数据
+          localStorage.removeItem("userInfo");
+          // 跳转到登录页，必须使用replace,因为退出不可能在返回个人中心
+          this.$router.replace("/login");
         })
         .catch(() => {
           // on cancel
@@ -115,19 +117,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.navigate-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  line-height: 48 / 360 * 100vw;
-  padding: 0 20 / 360 * 100vw;
-  border-bottom: 1px #eee solid;
-
-  .iconshouye {
-    font-size: 20px;
-  }
-}
-
 .header {
   padding: 20 / 360 * 100vw;
   display: flex;

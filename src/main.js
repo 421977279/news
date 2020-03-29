@@ -29,6 +29,7 @@ router.beforeEach((to, from, next) => {
   if (to.path === "/personal") {
     // 判断是否是登录状态，是否有token
     const userJson = JSON.parse(localStorage.getItem('userInfo')) || {};
+
     if (userJson.token) {
       next();
     }else {
