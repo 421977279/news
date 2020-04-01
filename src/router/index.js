@@ -31,6 +31,11 @@ const routes = [{
     // 我的关注页
     path: "/follow",
     component: () => import("@/views/Follow")
+  },
+  {
+    // 我的跟帖页
+    path: "/comments",
+    component: () => import("@/views/Comments")
   }
 ]
 
