@@ -98,6 +98,8 @@ export default {
       // 保存到data
       this.userInfo = data;
       console.log("userInfo的值是：",this.userInfo);
+      // 单独保存nickname给编辑的弹窗使用
+      this.nickname=data.nickname
     });
   },
   methods: {
@@ -154,7 +156,7 @@ export default {
     handleChangeNickname(){
       // 调用编辑用户信息的函数
       // 函数中的data需要传普通对象
-      this.handleEdit({nickname:this.nickname})
+      this.handleEdit({nickname:this.nickname});
       // 同步的修改当前显示的数据
       this.userInfo.nickname=this.nickname
     },

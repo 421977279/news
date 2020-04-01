@@ -32,12 +32,12 @@ router.beforeEach((to, from, next) => {
 
     if (userJson.token) {
       next();
-    }else {
+    } else {
       // 跳转到登录页,next这个函数可以传递路径，并且会跳转该路径
       // next这个函数可以传递路径，并且会跳转该路径
       next("/login");
-    } 
-  }else{
+    }
+  } else {
     // 非个人中心页
     next();
   }

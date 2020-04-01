@@ -1,7 +1,7 @@
 <template>
   <!-- 列表按钮栏 -->
   <div class="listbar">
-    <router-link to="#">
+    <router-link :to="path || '#'">
       <div>{{label}}</div>
       <div class="tips">
         {{tips}}
@@ -16,7 +16,7 @@ export default {
     // 声明子组件可以接收的属性
     // label表示左边的文字
     // tips表示右边的文字
-    props:["label","tips"]
+    props:["label","tips","path"]
 };
 </script>
 

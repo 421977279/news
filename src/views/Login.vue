@@ -135,33 +135,6 @@ export default {
   color: #cc3300;
 }
 
-.form-item {
-  margin-top: 20 /360 * 100vw;
-}
-
-.form-item input {
-  width: 100%;
-  height: 44 /360 * 100vw;
-  box-sizing: border-box;
-  line-height: 44 /360 * 100vw;
-  background: none;
-  border: none;
-  border-bottom: 1px #999 solid;
-  outline: none; //输入框点击时候没有高亮状态
-  font-size: 16px; //文字大小尽量用像素
-}
-
-.form-item button {
-  width: 100%;
-  height: 48 /360 * 100vw;
-  background-color: #cc3300;
-  color: #fff;
-  border-radius: 50px;
-  border: none;
-  outline: none;
-  font-size: 16px;
-}
-
 .form {
   .van-cell {
     padding: 10px 0;

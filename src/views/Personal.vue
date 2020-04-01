@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!-- 引入自定义组件 ,showHome显示-->
-    <NavigateBar title="个人中心" :showHome="true"/>
+    <NavigateBar title="个人中心" :showHome="true" />
     <router-link to="edit_profile">
       <div class="header">
         <!-- 头像 -->
@@ -26,7 +26,10 @@
 
     <!-- 组件的调用，单双标签都可以 -->
     <!-- :key不是报错，可以不加，但是vue希望给循环指定唯一的key，所以推荐我们在循环时候都加上 -->
-    <Listbar v-for="(item,index) in rows" :key="index" :label="item.label" :tips="item.tips" />
+    <Listbar v-for="(item,index) in rows" :key="index" 
+    :label="item.label" 
+    :tips="item.tips" 
+    :path="item.path"/>
 
     <!-- handleClick点击退出按钮触发 -->
     <!-- click.native这个事件类型，会给Listbar这个组件最外部的div强制绑定点击事件
@@ -51,15 +54,18 @@ export default {
       rows: [
         {
           label: "我的关注",
-          tips: "关注的用户"
+          tips: "关注的用户",
+          path: "/follow"
         },
         {
           label: "我的跟帖",
-          tips: "跟帖/回复"
+          tips: "跟帖/回复",
+          path: "/comments"
         },
         {
           label: "我的收藏",
-          tips: "文章/视频"
+          tips: "文章/视频",
+          path: "/collects"
         }
       ],
       // 个人的详细信息，初始值是一个对象
